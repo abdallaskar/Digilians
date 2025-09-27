@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "http://localhost:5000/api", // change to your backend URL
+    // baseURL: "http://localhost:5000/api", // change to your backend URL
+    baseURL: "https://digilians-backend.vercel.app/api",
     headers: {
         "Content-Type": "application/json",
     },
