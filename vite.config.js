@@ -14,11 +14,11 @@ export default defineConfig({
         theme_color: '#000000',
         background_color: '#ffffff',
         display: 'standalone',
-        start_url: '.',
+        start_url: '/',
         icons: [
-          { src: '/icon-192.png', sizes: '192x192', type: 'image/png' },
-          { src: '/icon-256.png', sizes: '256x256', type: 'image/png' },
-          { src: '/icon-512.png', sizes: '512x512', type: 'image/png' }
+          { "src": "/gold-star-192.png", "type": "image/png", "sizes": "192x192" },
+          { "src": "/gold-star-256.png", "type": "image/png", "sizes": "256x256" },
+          { "src": "/gold-star-512.png", "type": "image/png", "sizes": "512x512" }
         ]
       }
     })
