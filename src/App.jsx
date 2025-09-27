@@ -1,0 +1,34 @@
+//     app.jsx
+import Navbar from './components/navbar';
+import General from './pages/General';
+import Software from './pages/Software';
+import Marketing from './pages/Marketing';
+import AI from './pages/AI';
+import DataAnalytics from './pages/DataAnalytics';
+import Security from './pages/Security';
+import AppliedTech from './pages/AppliedTech';
+import { Routes, Route } from 'react-router';
+
+function App() {
+  return (
+    <>
+      <div className="min-h-screen bg-gray-100">
+        <Navbar />
+        <div className="p-6">
+          <Routes>
+            <Route path="/" element={<General />} />
+            <Route path="/software" element={<Software />} />
+            <Route path="/marketing" element={<Marketing />} />
+            <Route path="/ai" element={<AI />} />
+            <Route path="/analytics" element={<DataAnalytics />} />
+            <Route path="/security" element={<Security />} />
+            <Route path="/applied" element={<AppliedTech />} />
+          </Routes>
+        </div>
+      </div>
+      .
+    </>
+  );
+}
+
+export default App;

@@ -1,0 +1,13 @@
+{ "short_name": "Digilians",
+ "name": "Digilians", 
+ "start_url": ".",
+  "display": "standalone", 
+  "theme_color": "#000000",
+   "background_color": "#ffffff",
+    "description": "Digilians Management Progressive Web App.", 
+    "icons": [ 
+        { "src": "/gold-star-192.png", "type": "image/png", "sizes": "192x192" }, 
+        { "src": "/gold-star-256.png", "type": "image/png", "sizes": "256x256" }, 
+        { "src": "/gold-star-512.png", "type": "image/png", "sizes": "512x512" } 
+        ] 
+}
