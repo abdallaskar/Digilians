@@ -1,5 +1,5 @@
 //     app.jsx
-import Navbar from './components/navbar';
+import Navbar from './components/Navbar';
 import General from './pages/General';
 import Software from './pages/Software';
 import Marketing from './pages/Marketing';
