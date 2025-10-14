@@ -1,0 +1,137 @@
+import React, { useState } from 'react';
+
+const RegisterForm = ({ onSubmit, isLoading, error }) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (formData.password !== formData.confirmPassword) {
+      alert('Passwords do not match.');
+      return;
+    }
+
+    // Pass only required data to the submission handler
+    const { name, email, password } = formData;
+    onSubmit({ name, email, password });
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="w-full space-y-6">
+      <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-6">Create your new account</h2>
+
+      {/* Error Message Display */}
+      {error && (
+        <div className="p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg transition duration-300">
+          {error}
+        </div>
+      )}
+
+      {/* Name Input */}
+      <div>
+        <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+          Full Name
+        </label>
+        <input
+          id="name"
+          name="name"
+          type="text"
+          required
+          value={formData.name}
+          onChange={handleChange}
+          className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 transition duration-150"
+          placeholder="John Doe"
+        />
+      </div>
+
+      {/* Email Input */}
+      <div>
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+          Email address
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          required
+          value={formData.email}
+          onChange={handleChange}
+          className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 transition duration-150"
+          placeholder="you@example.com"
+        />
+      </div>
+
+      {/* Password Input */}
+      <div>
+        <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+          Password
+        </label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          required
+          minLength="6"
+          value={formData.password}
+          onChange={handleChange}
+          className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 transition duration-150"
+          placeholder="••••••••"
+        />
+      </div>
+
+      {/* Confirm Password Input */}
+      <div>
+        <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+          Confirm Password
+        </label>
+        <input
+          id="confirmPassword"
+          name="confirmPassword"
+          type="password"
+          required
+          minLength="6"
+          value={formData.confirmPassword}
+          onChange={handleChange}
+          className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 transition duration-150"
+          placeholder="••••••••"
+        />
+      </div>
+
+      {/* Submit Button */}
+      <div>
+        <button
+          type="submit"
+          disabled={isLoading}
+          className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-lg text-lg font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-200 ease-in-out transform hover:scale-[1.01] ${
+            isLoading ? 'opacity-60 cursor-not-allowed' : ''
+          }`}>
+          {isLoading ? (
+            <svg className="animate-spin h-5 w-5 mr-3 text-white" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+          ) : (
+            'Register'
+          )}
+        </button>
+      </div>
+    </form>
+  );
+};
+
+export default RegisterForm;

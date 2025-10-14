@@ -8,6 +8,8 @@ import DataAnalytics from './pages/DataAnalytics';
 import Security from './pages/Security';
 import AppliedTech from './pages/AppliedTech';
 import { Routes, Route } from 'react-router';
+import RegisterPage from './pages/auth/RegisterPage';
+import LoginPage from './pages/auth/LoginPage';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
             <Route path="/analytics" element={<DataAnalytics />} />
             <Route path="/security" element={<Security />} />
             <Route path="/applied" element={<AppliedTech />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
           </Routes>
         </div>
       </div>

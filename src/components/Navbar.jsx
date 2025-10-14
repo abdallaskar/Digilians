@@ -13,6 +13,7 @@ export default function Navbar() {
     { name: 'DATA ANALYTICS', href: '/analytics' },
     { name: 'SECURITY', href: '/security' },
     { name: 'APPLIED TECHNOLOGIES', href: '/applied' },
+    { name: 'LOGIN', href: '/login' },
   ];
 
   return (
