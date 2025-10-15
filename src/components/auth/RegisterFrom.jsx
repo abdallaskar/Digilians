@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { registerUser } from '../../api/authService';
 
-const RegisterForm = ({ onSubmit, isLoading, error }) => {
+const RegisterForm = ({ isLoading, error }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,7 +26,10 @@ const RegisterForm = ({ onSubmit, isLoading, error }) => {
 
     // Pass only required data to the submission handler
     const { name, email, password } = formData;
-    onSubmit({ name, email, password });
+    const response = registerUser(name, email, password);
+    console.log(response);
+
+
   };
 
   return (
@@ -114,9 +118,8 @@ const RegisterForm = ({ onSubmit, isLoading, error }) => {
         <button
           type="submit"
           disabled={isLoading}
-          className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-lg text-lg font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-200 ease-in-out transform hover:scale-[1.01] ${
-            isLoading ? 'opacity-60 cursor-not-allowed' : ''
-          }`}>
+          className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-lg text-lg font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-200 ease-in-out transform hover:scale-[1.01] ${isLoading ? 'opacity-60 cursor-not-allowed' : ''
+            }`}>
           {isLoading ? (
             <svg className="animate-spin h-5 w-5 mr-3 text-white" viewBox="0 0 24 24">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>

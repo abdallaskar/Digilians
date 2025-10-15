@@ -49,10 +49,11 @@ export const AuthProvider = ({ children }) => {
         return userData;
     };
 
-    const login = async (email, password) => {
+    const login = async (formData) => {
         setIsLoading(true);
         setError(null);
         try {
+            const { email, password } = formData;
             const data = await loginUser(email, password);
             return handleSuccess(data);
         } catch (err) {
@@ -65,10 +66,11 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    const register = async (name, email, password) => {
+    const register = async (formData) => {
         setIsLoading(true);
         setError(null);
         try {
+            const { name, email, password } = formData;
             const data = await registerUser(name, email, password);
             return handleSuccess(data); // Log the user in immediately after registration
         } catch (err) {

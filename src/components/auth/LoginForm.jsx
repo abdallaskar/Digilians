@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { loginUser } from '../../api/authService';
 
 const LoginForm = ({ onSubmit, isLoading, error }) => {
   const [formData, setFormData] = useState({
@@ -19,7 +20,8 @@ const LoginForm = ({ onSubmit, isLoading, error }) => {
       alert('Please enter both email and password.');
       return;
     }
-    onSubmit(formData);
+    const response = loginUser(formData.email, formData.password);
+    console.log(response);
   };
 
   return (
