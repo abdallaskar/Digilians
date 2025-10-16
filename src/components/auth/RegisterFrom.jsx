@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { registerUser } from '../../api/authService';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext.jsx';
 
-const RegisterForm = ({ isLoading, error }) => {
+const RegisterForm = () => {
+  const { register, isLoading, error } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -16,7 +17,7 @@ const RegisterForm = ({ isLoading, error }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
@@ -24,12 +25,15 @@ const RegisterForm = ({ isLoading, error }) => {
       return;
     }
 
-    // Pass only required data to the submission handler
-    const { name, email, password } = formData;
-    const response = registerUser(name, email, password);
-    console.log(response);
-
-
+    try {
+      // Pass only required data to the submission handler
+      const { name, email, password } = formData;
+      await register({ name, email, password });
+      // Navigation will be handled by the page component
+    } catch (err) {
+      // Error is already handled by the context
+      console.error('Registration failed:', err);
+    }
   };
 
   return (

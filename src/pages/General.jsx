@@ -43,6 +43,7 @@ export default function General() {
     } catch (err) {
       console.error('Failed to delete sheet', err);
     }
+
   };
 
   return (

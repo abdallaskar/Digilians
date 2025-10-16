@@ -1,10 +1,12 @@
 // File: src/components/AddSheetForm.jsx
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from '../context/AuthContext.jsx';
 
 export default function AddSheetForm({ onAdd, type }) {
   const [showForm, setShowForm] = useState(false);
   const [name, setName] = useState('');
   const [link, setLink] = useState('');
+  const { isLoggedIn } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,6 +18,17 @@ export default function AddSheetForm({ onAdd, type }) {
     setLink('');
     setShowForm(false); // hide form after adding
   };
+
+  // If user is not logged in, don't show the add form
+  if (!isLoggedIn) {
+    return (
+      <div className="mb-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+        <p className="text-yellow-800 text-center">
+          Please <a href="/login" className="text-blue-600 hover:underline">login</a> to add new sheets.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="mb-4">

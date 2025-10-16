@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { loginUser } from '../../api/authService';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext.jsx';
 
-const LoginForm = ({ onSubmit, isLoading, error }) => {
+const LoginForm = () => {
+  const { login, isLoading, error } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -14,14 +15,20 @@ const LoginForm = ({ onSubmit, isLoading, error }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
       alert('Please enter both email and password.');
       return;
     }
-    const response = loginUser(formData.email, formData.password);
-    console.log(response);
+
+    try {
+      await login(formData);
+      // Navigation will be handled by the page component
+    } catch (err) {
+      // Error is already handled by the context
+      console.error('Login failed:', err);
+    }
   };
 
   return (
@@ -74,9 +81,8 @@ const LoginForm = ({ onSubmit, isLoading, error }) => {
         <button
           type="submit"
           disabled={isLoading}
-          className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-lg text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-200 ease-in-out transform hover:scale-[1.01] ${
-            isLoading ? 'opacity-60 cursor-not-allowed' : ''
-          }`}>
+          className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-lg text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-200 ease-in-out transform hover:scale-[1.01] ${isLoading ? 'opacity-60 cursor-not-allowed' : ''
+            }`}>
           {isLoading ? (
             <svg className="animate-spin h-5 w-5 mr-3 text-white" viewBox="0 0 24 24">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>

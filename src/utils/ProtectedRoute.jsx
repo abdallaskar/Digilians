@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { Navigate } from 'react-router-dom'; // Assuming you use react-router-dom for routing
-import { AuthContext } from '../context/AuthContext'; // Correct relative path
+import { Navigate } from 'react-router';
+import { AuthContext } from '../context/AuthContext.jsx';
 
 // This component checks for authentication status before rendering the requested element
 const ProtectedRoute = ({ children }) => {
