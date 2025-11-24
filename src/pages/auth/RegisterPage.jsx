@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import RegisterForm from '../../components/auth/RegisterFrom';
+import RegisterForm from '../../components/features/auth/RegisterForm';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../../context/AuthContext.jsx';
 

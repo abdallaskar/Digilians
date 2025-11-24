@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { AuthContext } from '../../context/AuthContext.jsx';
+import { AuthContext } from '../../../context/AuthContext.jsx';
 
 const LoginForm = () => {
   const { login, isLoading, error } = useContext(AuthContext);

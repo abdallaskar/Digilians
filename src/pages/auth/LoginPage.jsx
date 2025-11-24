@@ -1,18 +1,24 @@
 import React, { useContext, useEffect } from 'react';
-import LoginForm from '../../components/auth/LoginForm';
+import LoginForm from '../../components/features/auth/LoginForm';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../../context/AuthContext.jsx';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, user } = useContext(AuthContext);
+
+  console.log('Current user in LoginPage:', user);
 
   // Redirect to home if already logged in
   useEffect(() => {
     if (isLoggedIn) {
+      if (user && user.role === 'admin') {
+        navigate('/admin');
+        return;
+      }
       navigate('/');
     }
-  }, [isLoggedIn, navigate]);
+  }, [isLoggedIn, navigate, user]);
 
   // If already logged in, don't render the login form
   if (isLoggedIn) {

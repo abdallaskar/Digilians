@@ -2,7 +2,7 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import { Menu, X, User, LogOut, Home } from 'lucide-react';
 import { Link } from 'react-router';
-import { AuthContext } from '../context/AuthContext.jsx';
+import { AuthContext } from '../../context/AuthContext.jsx';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,14 +24,7 @@ export default function Navbar() {
     };
   }, []);
 
-  const links = [
-    { name: 'SOFTWARE', href: '/software' },
-    { name: 'DIGITAL MARKETING', href: '/marketing' },
-    { name: 'AI & DATA SCIENCE', href: '/ai' },
-    { name: 'DATA ANALYTICS', href: '/analytics' },
-    { name: 'SECURITY', href: '/security' },
-    { name: 'APPLIED TECHNOLOGIES', href: '/applied' },
-  ];
+  const links = [];
 
   const handleLogout = () => {
     logout();
